@@ -54,12 +54,16 @@ export class NgxSpeechRecognitionService {
   }
 
   private getSpeechRecognition(): SpeechRecognition {
-    // tslint:disable-next-line: no-string-literal
     return (
+      // tslint:disable-next-line: no-string-literal
       window['SpeechRecognition'] ||
+      // tslint:disable-next-line: no-string-literal
       window['webkitSpeechRecognition'] ||
+      // tslint:disable-next-line: no-string-literal
       window['mozSpeechRecognition'] ||
+      // tslint:disable-next-line: no-string-literal
       window['msSpeechRecognition'] ||
+      // tslint:disable-next-line: no-string-literal
       window['oSpeechRecognition']
     );
   }
