@@ -1,0 +1,5 @@
+<button *ngIf="!startedSpeechRecognition" (click)="start()">Começar</button>
+
+<button *ngIf="startedSpeechRecognition" (click)="stop()">Parar</button>
+
+<p>Palavras: {{ textSpeechRecognition }}</p>
