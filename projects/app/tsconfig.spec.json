@@ -3,12 +3,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true,
     "types": [
-      "jasmine"
+      "jest",
+      "node"
     ]
   },
   "files": [
-    "src/test.ts",
     "src/polyfills.ts"
   ],
   "include": [
