@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 
-declare class WebkitSpeechRecognition extends SpeechRecognition {}
-
 @Injectable({
   providedIn: 'root',
 })
 export class NgxSpeechRecognitionService {
   private listening: (speach: string) => void;
   private errorListening: (erro: any) => void;
-  private speechRegocnize: SpeechRecognition | WebkitSpeechRecognition;
+  private speechRegocnize: SpeechRecognition;
 
   finalTranscript = '';
 
   constructor() {
-    if (typeof WebkitSpeechRecognition !== 'undefined') {
-      this.speechRegocnize = new WebkitSpeechRecognition();
-    } else if (typeof SpeechRecognition !== 'undefined') {
-      this.speechRegocnize = new SpeechRecognition();
+    // tslint:disable-next-line: no-string-literal
+    const speechRecognition =
+      window['SpeechRecognition'] ||
+      window['webkitSpeechRecognition'] ||
+      window['msSpeechRecognition'];
+
+    if (speechRecognition) {
+      this.speechRegocnize = new speechRecognition();
     } else {
       throw new Error('Speech recognition is not supported in your browser.');
     }
