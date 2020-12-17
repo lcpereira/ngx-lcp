@@ -1,0 +1,28 @@
+dist: xenial
+sudo: false
+
+language: node_js
+node_js:
+  - "12"
+
+cache:
+  directories:
+    - ./node_modules
+
+install:
+  - npm install -g @angular/cli
+  - npm install
+
+script:
+  - npm run lint
+  - npm run build-prod:lib-ngx-speech-recognition
+  - ng build --prod --base-href https://lcpereira.github.io/ngx-lcp/ --deploy-url https://lcpereira.github.io/ngx-lcp/
+  - mv dist/app/index.html dist/app/404.html
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/ngx-lcp
+  on:
+    branch: main
