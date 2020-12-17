@@ -53,7 +53,8 @@ export class NgxSpeechRecognitionService {
     }
   }
 
-  private getSpeechRecognition(): SpeechRecognition {
+  // TODO: add typing to that method
+  private getSpeechRecognition(): any {
     return (
       // tslint:disable-next-line: no-string-literal
       window['SpeechRecognition'] ||
