@@ -11,11 +11,7 @@ export class NgxSpeechRecognitionService {
   finalTranscript = '';
 
   constructor() {
-    // tslint:disable-next-line: no-string-literal
-    const speechRecognition =
-      window['SpeechRecognition'] ||
-      window['webkitSpeechRecognition'] ||
-      window['msSpeechRecognition'];
+    const speechRecognition = this.getSpeechRecognition();
 
     if (speechRecognition) {
       this.speechRegocnize = new speechRecognition();
@@ -55,6 +51,17 @@ export class NgxSpeechRecognitionService {
     if (this.errorListening) {
       this.errorListening(e);
     }
+  }
+
+  private getSpeechRecognition(): SpeechRecognition {
+    // tslint:disable-next-line: no-string-literal
+    return (
+      window['SpeechRecognition'] ||
+      window['webkitSpeechRecognition'] ||
+      window['mozSpeechRecognition'] ||
+      window['msSpeechRecognition'] ||
+      window['oSpeechRecognition']
+    );
   }
 
   start(listening: (speach: string) => void, error?: (error: any) => void): void {
