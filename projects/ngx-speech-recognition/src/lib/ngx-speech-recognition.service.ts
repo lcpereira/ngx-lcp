@@ -56,8 +56,7 @@ export class NgxSpeechRecognitionService {
     }
 
     try {
-      this.listeningTmp(interimTranscript);
-      this.listening(this.finalTranscript);
+      this.listening(this.finalTranscript + interimTranscript);
     } catch (e) {
       this.onCantHeard(e);
     }
