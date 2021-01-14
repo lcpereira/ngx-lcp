@@ -20,6 +20,7 @@ export class AppComponent {
       },
       (error) => {
         this.stop();
+        console.log(error);
       }
     );
   }
