@@ -49,7 +49,7 @@ export class NgxSpeechRecognitionService {
     let interimTranscript = '';
     for (let index = event.resultIndex; index < event.results.length; ++index) {
       if (event.results[index].isFinal) {
-        this.finalTranscript += event.results[index][0].transcript;
+        this.finalTranscript = event.results[index][0].transcript;
       } else {
         interimTranscript += event.results[index][0].transcript;
       }
