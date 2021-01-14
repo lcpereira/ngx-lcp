@@ -15,6 +15,7 @@ declare global {
 })
 export class NgxSpeechRecognitionService {
   private listening: (speach: string) => void;
+  private listeningTmp: (speach: string) => void;
   private errorListening: (erro: any) => void;
   private speechRegocnize: SpeechRecognition;
 
@@ -55,7 +56,8 @@ export class NgxSpeechRecognitionService {
     }
 
     try {
-      this.listening(interimTranscript || this.finalTranscript);
+      this.listeningTmp(interimTranscript);
+      this.listening(this.finalTranscript);
     } catch (e) {
       this.onCantHeard(e);
     }
@@ -78,8 +80,13 @@ export class NgxSpeechRecognitionService {
     );
   }
 
-  start(listening: (speach: string) => void, error?: (error: unknown) => void): void {
+  start(
+    listening: (speach: string) => void,
+    listeningTmp: (speach: string) => void,
+    error?: (error: unknown) => void
+  ): void {
     this.listening = listening;
+    this.listeningTmp = listeningTmp;
 
     if (error) {
       this.errorListening = error;

@@ -9,6 +9,7 @@ import { NgxSpeechRecognitionService } from '@ngx-lcp/speech-recognition';
 export class AppComponent {
   startedSpeechRecognition = false;
   textSpeechRecognition = '';
+  interimTranscript = '';
 
   constructor(private speechRecognitionService: NgxSpeechRecognitionService) {}
 
@@ -17,6 +18,9 @@ export class AppComponent {
     this.speechRecognitionService.start(
       (text: string) => {
         this.textSpeechRecognition = text;
+      },
+      (text2: string) => {
+        this.interimTranscript = text2;
       },
       (error) => {
         this.stop();
