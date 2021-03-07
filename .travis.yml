@@ -25,3 +25,12 @@ deploy:
   local_dir: dist/app
   on:
     branch: main
+
+  provider: npm
+  skip_cleanup: true
+  local_dir: dist/ngx-speech-recognition
+  email: $NPM_EMAIL
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
+    repo: https://github.com/lcpereira/ngx-lcp

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { NgxSpeechRecognition } from './ngx-speech-recognition.interface';
 
 declare global {
   interface Window {
-    SpeechRecognition: any;
-    webkitSpeechRecognition: any;
-    mozSpeechRecognition: any;
-    msSpeechRecognition: any;
-    oSpeechRecognition: any;
+    SpeechRecognition: unknown;
+    webkitSpeechRecognition: unknown;
+    mozSpeechRecognition: unknown;
+    msSpeechRecognition: unknown;
+    oSpeechRecognition: unknown;
   }
 }
 
@@ -14,10 +15,9 @@ declare global {
   providedIn: 'root',
 })
 export class NgxSpeechRecognitionService {
-  private listening: (speach: string) => void;
-  private listeningTmp: (speach: string) => void;
-  private errorListening: (erro: any) => void;
-  private speechRegocnize: SpeechRecognition;
+  private listening: ((speach: string) => void) | null = null;
+  private errorListening: ((erro: any) => void) | null = null;
+  private speechRegocnize: SpeechRecognition | null = null;
 
   finalTranscript = '';
 
@@ -56,7 +56,9 @@ export class NgxSpeechRecognitionService {
     }
 
     try {
-      this.listening(this.finalTranscript + interimTranscript);
+      if (this.listening) {
+        this.listening(this.finalTranscript + interimTranscript);
+      }
     } catch (e) {
       this.onCantHeard(e);
     }
@@ -68,24 +70,16 @@ export class NgxSpeechRecognitionService {
     }
   }
 
-  // TODO: add typing to that method
-  private getSpeechRecognition(): any {
-    return (
-      window.SpeechRecognition ||
+  private getSpeechRecognition(): NgxSpeechRecognition {
+    return (window.SpeechRecognition ||
       window.webkitSpeechRecognition ||
       window.mozSpeechRecognition ||
       window.msSpeechRecognition ||
-      window.oSpeechRecognition
-    );
+      window.oSpeechRecognition) as NgxSpeechRecognition;
   }
 
-  start(
-    listening: (speach: string) => void,
-    listeningTmp: (speach: string) => void,
-    error?: (error: unknown) => void
-  ): void {
+  start(listening: (speach: string) => void, error?: (error: unknown) => void): void {
     this.listening = listening;
-    this.listeningTmp = listeningTmp;
 
     if (error) {
       this.errorListening = error;
