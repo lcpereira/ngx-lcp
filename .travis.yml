@@ -25,6 +25,7 @@ deploy:
   local_dir: dist/app
   on:
     branch: main
+
   - provider: npm
   skip_cleanup: true
   local_dir: dist/ngx-speech-recognition
