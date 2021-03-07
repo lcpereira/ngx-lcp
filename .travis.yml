@@ -19,13 +19,13 @@ script:
   - ng build --prod --base-href https://lcpereira.github.io/ngx-lcp/ --deploy-url https://lcpereira.github.io/ngx-lcp/
 
 deploy:
-  provider: pages
+  - provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist/app
   on:
     branch: main
-  provider: npm
+  - provider: npm
   skip_cleanup: true
   local_dir: dist/ngx-speech-recognition
   email: $NPM_EMAIL
