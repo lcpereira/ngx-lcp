@@ -27,6 +27,8 @@ deploy:
       branch: main
   - provider: script
     skip_cleanup: true
-    script: bash npm_publish.sh
+    script:
+      - cd dist/ngx-speech-recognition
+      - NPM_API_KEY=$NPM_TOKEN npm publish
     on:
       branch: main
