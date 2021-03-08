@@ -1,6 +1,18 @@
 {
   "name": "ngx-lcp",
-  "version": "0.0.3",
+  "description": "ngx-lcp",
+  "version": "0.0.7",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lcpereira/ngx-lcp.git"
+  },
+  "keywords": [],
+  "author": "lcpereira.dev@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lcpereira/ngx-lcp/issues"
+  },
+  "homepage": "https://lcpereira.github.io/ngx-lcp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
