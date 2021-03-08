@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo 'Hello World - ${NPM_EMAIL}'
+echo ${NPM_EMAIL}
+echo $(ls)
