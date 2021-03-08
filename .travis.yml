@@ -18,25 +18,16 @@ script:
   - npm run build-prod:lib-ngx-speech-recognition
   - ng build --prod --base-href https://lcpereira.github.io/ngx-lcp/ --deploy-url https://lcpereira.github.io/ngx-lcp/
 
-jobs:
-  include:
-    - stage: deploy github pages
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        github_token: $GITHUB_TOKEN
-        local_dir: dist/app
-        on:
-          branch: main
-    - stage: publish ngx-speech-recognition
-      before_deploy:
-        - cd dist/ngx-speech-recognition
-      after_deploy:
-        - cd ../../
-      deploy:
-        provider: npm
-        skip_cleanup: true
-        email: $NPM_EMAIL
-        api_key: $NPM_TOKEN
-        on:
-          branch: main
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: dist/app
+    on:
+      branch: main
+  - provider: script
+    script:
+      - cd dist/ngx-speech-recognition
+      - NPM_API_KEY=NPM_TOKEN npm publish
+    on:
+      branch: main
