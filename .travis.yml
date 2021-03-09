@@ -11,7 +11,7 @@ cache:
 
 install:
   - npm install -g @angular/cli
-  - npm install
+  - npm ci
 
 script:
   - npm run lint
