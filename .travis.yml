@@ -27,9 +27,6 @@ deploy:
       branch: main
   - provider: script
     skip_cleanup: true
-    script:
-      - ls
-      - cd ./dist
-      - ls
+    script: bash npm_publish.sh
     on:
       branch: main
