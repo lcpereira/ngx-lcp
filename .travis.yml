@@ -16,17 +16,13 @@ install:
 script:
   - npm run lint
   - npm run build-prod:lib-ngx-speech-recognition
+  - if [ "$TRAVIS_BRANCH" = "main" ]; then bash npm_publish.sh; fi
   - ng build --prod --base-href https://lcpereira.github.io/ngx-lcp/ --deploy-url https://lcpereira.github.io/ngx-lcp/
 
 deploy:
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    local_dir: dist/app
-    on:
-      branch: main
-  - provider: script
-    skip_cleanup: true
-    script: bash npm_publish.sh
-    on:
-      branch: main
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/app
+  on:
+    branch: main

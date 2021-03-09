@@ -21,7 +21,7 @@
     "test:app": "ng test app --coverage",
     "test:lib-ngx-speech-recognition": "ng test @ngx-lcp/speech-recognition --coverage",
     "build:lib-ngx-speech-recognition": "ng build @ngx-lcp/speech-recognition",
-    "build-prod:lib-ngx-speech-recognition": "ng build @ngx-lcp/speech-recognition --prod",
+    "build-prod:lib-ngx-speech-recognition": "ng build --prod @ngx-lcp/speech-recognition",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
