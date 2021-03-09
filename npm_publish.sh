@@ -1,5 +1,6 @@
 #!/bin/bash
 
-ls
+echo $NPM_EMAIL
+
 cd dist/ngx-speech-recognition
 ls
