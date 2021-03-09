@@ -28,7 +28,6 @@ deploy:
   - provider: script
     skip_cleanup: true
     script:
-      - cd dist/ngx-speech-recognition
-      - pwd
+      - ls
     on:
       branch: main
