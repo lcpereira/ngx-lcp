@@ -1,7 +1,7 @@
 {
   "name": "ngx-lcp",
   "description": "ngx-lcp",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/lcpereira/ngx-lcp.git"
@@ -26,7 +26,8 @@
     "build:lib-ngx-upload-file": "ng build @ngx-lcp/upload-file",
     "build-prod:lib-ngx-upload-file": "ng build --prod @ngx-lcp/upload-file",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "update-lib-versions": "node update-lib-versions.js"
   },
   "private": false,
   "husky": {
@@ -71,6 +72,7 @@
     "ng-packagr": "^11.0.0",
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",
+    "replace-in-file": "^6.2.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "tslint-config-prettier": "^1.18.0",

@@ -16,6 +16,8 @@ install:
 script:
   - npm run lint
   - npm run build-prod:lib-ngx-speech-recognition
+  - npm run build-prod:lib-ngx-upload-file
+  - npm run update-lib-versions
   - if [ "$TRAVIS_BRANCH" = "main" ]; then bash npm_publish.sh; fi
   - ng build --prod --base-href https://lcpereira.github.io/ngx-lcp/ --deploy-url https://lcpereira.github.io/ngx-lcp/
 
