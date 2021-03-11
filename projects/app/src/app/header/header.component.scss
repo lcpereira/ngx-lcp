@@ -1,0 +1,12 @@
+header {
+  top: 0;
+  background: #1e87f0;
+
+  & .icons {
+    font-size: 30px;
+  }
+}
+
+header, .fake-header {
+  height: 70px;
+}

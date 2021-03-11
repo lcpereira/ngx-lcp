@@ -26,8 +26,17 @@
       "dom"
     ],
     "paths": {
-      "@ngx-lcp/speech-recognition": [
+      "@ngx-lcp/ngx-speech-recognition": [
         "dist/ngx-speech-recognition"
+      ],
+      "@ngx-lcp/ngx-speech-recognition/*": [
+        "dist/ngx-speech-recognition/*"
+      ],
+      "@ngx-lcp/ngx-upload-file": [
+        "dist/ngx-upload-file"
+      ],
+      "@ngx-lcp/ngx-upload-file/*": [
+        "dist/ngx-upload-file/*"
       ]
     }
   }

@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-secondary" *ngIf="!startedSpeechRecognition" (click)="start()">
+  Start
+</button>
+<button type="button" class="btn btn-secondary" *ngIf="startedSpeechRecognition" (click)="stop()">
+  Stop
+</button>
+
+<p *ngIf="textSpeechRecognition" class="mt-2">Words: {{ textSpeechRecognition }}</p>

@@ -145,6 +145,42 @@
           }
         }
       }
+    },
+    "@ngx-lcp/upload-file": {
+      "projectType": "library",
+      "root": "projects/ngx-upload-file",
+      "sourceRoot": "projects/ngx-upload-file/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-upload-file/tsconfig.lib.json",
+            "project": "projects/ngx-upload-file/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-upload-file/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {}
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-upload-file/tsconfig.lib.json",
+              "projects/ngx-upload-file/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "app"

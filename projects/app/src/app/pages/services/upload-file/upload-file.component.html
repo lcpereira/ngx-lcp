@@ -1,0 +1,17 @@
+<button type="button" class="btn btn-secondary" (click)="uploadFile()">Upload file</button>
+
+<div class="mt-2" *ngIf="files.length">
+  <h5>Files:</h5>
+  <table class="table">
+    <thead>
+      <th scope="col">Name</th>
+      <th scope="col">Size</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of files">
+        <td>{{ file.name }}</td>
+        <td>{{ file.size }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

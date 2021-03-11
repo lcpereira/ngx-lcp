@@ -22,6 +22,9 @@
     "test:lib-ngx-speech-recognition": "ng test @ngx-lcp/speech-recognition --coverage",
     "build:lib-ngx-speech-recognition": "ng build @ngx-lcp/speech-recognition",
     "build-prod:lib-ngx-speech-recognition": "ng build --prod @ngx-lcp/speech-recognition",
+    "test:lib-ngx-upload-file": "ng test @ngx-lcp/upload-file --coverage",
+    "build:lib-ngx-upload-file": "ng build @ngx-lcp/upload-file",
+    "build-prod:lib-ngx-upload-file": "ng build --prod @ngx-lcp/upload-file",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -44,6 +47,8 @@
     "@angular/platform-browser": "~11.0.4",
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
+    "@mdi/font": "^5.9.55",
+    "bootstrap-css-only": "^4.4.1",
     "core-js": "^3.8.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -52,7 +57,7 @@
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",
     "@angular-devkit/build-angular": "~0.1100.4",
-    "@angular/cli": "~11.0.4",
+    "@angular/cli": "^11.2.3",
     "@angular/compiler-cli": "~11.0.4",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-angular": "^11.0.0",
