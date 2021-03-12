@@ -1,24 +1,39 @@
-# NgxSpeechRecognition
+# @ngx-lcp/speech-recognition
+Simple service to listen to the person using the microphone.
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+[![Build Status](https://travis-ci.org/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.org/lcpereira/ngx-lcp)
 
-## Code scaffolding
+# Security Notice
+This lib is still in development.
 
-Run `ng generate component component-name --project ngx-speech-recognition` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-speech-recognition`.
-> Note: Don't forget to add `--project ngx-speech-recognition` or else it will be added to the default project in your `angular.json` file. 
+# Install
+```bash
+npm i @ngx-lcp/speech-recognition
+```
 
-## Build
+# Usage
+```typescript
+import { NgxSpeechRecognitionService } from '@ngx-lcp/ngx-speech-recognition';
 
-Run `ng build ngx-speech-recognition` to build the project. The build artifacts will be stored in the `dist/` directory.
+...
+constructor(private speechRecognitionService: NgxSpeechRecognitionService) {}
 
-## Publishing
+start(): void {
+  this.speechRecognitionService.start(
+    (text: string) => {
+      console.log(text);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
 
-After building your library with `ng build ngx-speech-recognition`, go to the dist folder `cd dist/ngx-speech-recognition` and run `npm publish`.
+stop(): void {
+  this.speechRecognitionService.stop();
+}
+```
 
-## Running unit tests
+# License
 
-Run `ng test ngx-speech-recognition` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[MIT](LICENSE)
