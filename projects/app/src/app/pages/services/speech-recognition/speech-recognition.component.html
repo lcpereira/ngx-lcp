@@ -1,8 +1,16 @@
-<button type="button" class="btn btn-secondary" *ngIf="!startedSpeechRecognition" (click)="start()">
-  Start
-</button>
-<button type="button" class="btn btn-secondary" *ngIf="startedSpeechRecognition" (click)="stop()">
-  Stop
-</button>
-
-<p *ngIf="textSpeechRecognition" class="mt-2">Words: {{ textSpeechRecognition }}</p>
+<div class="speech-recognition">
+  <textarea
+    class="form-control"
+    rows="2"
+    disabled
+    [value]="textSpeechRecognition"
+    [placeholder]="startedSpeechRecognition ? 'Speak now' : 'Press the microphone to speak'"
+  ></textarea>
+  <div
+    class="microphone"
+    [class]="{ listening: startedSpeechRecognition }"
+    (click)="startedSpeechRecognition ? stop() : start()"
+  >
+    <span class="mdi mdi-microphone"></span>
+  </div>
+</div>

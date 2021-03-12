@@ -49,7 +49,6 @@ export class NgxUploadFileComponent {
     let fileError: UploadFileError | null = null;
 
     Array.from(files).every((file: File) => {
-      console.log(this.settings?.maxFileSize, file.size);
       if (this.settings?.maxFileSize && this.settings?.maxFileSize < file.size) {
         fileError = {
           code: UploadFileErrorEnum.FILE_MAX_SIZE,

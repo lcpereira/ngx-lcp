@@ -1,0 +1,27 @@
+.speech-recognition {
+  position: relative;
+
+  & textarea {
+    background-color: transparent !important;
+    padding: 4px;
+    padding-bottom: 40px;
+    border: none;
+    color: #3c4043;
+    resize: none;
+    white-space: pre-wrap;
+    font-size: 22px;
+  }
+
+  & .microphone {
+    bottom: 0;
+    right: 10px;
+    font-size: 28px;
+    position: absolute;
+    color: #6c757d;
+    cursor: pointer;
+    &.listening {
+      color: #ec6565;
+    }
+  }
+}
+

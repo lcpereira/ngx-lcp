@@ -15,7 +15,6 @@ export class UploadFileComponent {
     this.uploadFileService.open().subscribe(
       (data: UploadFile) => {
         this.files = this.files.concat(data.files);
-        console.log(this.files);
       },
       (error: UploadFileError) => {
         console.log(error.message);

@@ -1,17 +1,21 @@
-<button type="button" class="btn btn-secondary" (click)="uploadFile()">Upload file</button>
+<button type="button" class="btn btn-secondary" (click)="uploadFile()">Choose file</button>
 
-<div class="mt-2" *ngIf="files.length">
-  <h5>Files:</h5>
-  <table class="table">
+<div class="mt-4">
+  <table class="table" *ngIf="files.length">
     <thead>
       <th scope="col">Name</th>
       <th scope="col">Size</th>
+      <th class="text-center" scope="col">Remove</th>
     </thead>
     <tbody>
-      <tr *ngFor="let file of files">
+      <tr *ngFor="let file of files; let i = index">
         <td>{{ file.name }}</td>
         <td>{{ file.size }}</td>
+        <td class="text-center remove-file">
+          <span (click)="files.splice(i, 1)" class="mdi mdi-delete"></span>
+        </td>
       </tr>
     </tbody>
   </table>
+  <h5 class="text-center" *ngIf="!files.length">No files</h5>
 </div>

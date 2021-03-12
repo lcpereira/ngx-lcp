@@ -14,6 +14,7 @@ export class SpeechRecognitionComponent {
 
   start(): void {
     this.startedSpeechRecognition = true;
+    this.textSpeechRecognition = '';
     this.speechRecognitionService.start(
       (text: string) => {
         this.textSpeechRecognition = text;
