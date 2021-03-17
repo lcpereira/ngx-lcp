@@ -3,7 +3,7 @@
     class="form-control"
     rows="2"
     disabled
-    [value]="textSpeechRecognition"
+    [value]="speechRecognition?.interimTranscript || speechRecognition?.finalTranscript"
     [placeholder]="startedSpeechRecognition ? 'Speak now' : 'Press the microphone to speak'"
   ></textarea>
   <div

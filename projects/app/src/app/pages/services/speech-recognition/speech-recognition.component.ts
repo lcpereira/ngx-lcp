@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NgxSpeechRecognitionService } from '@ngx-lcp/ngx-speech-recognition';
+import {
+  NgxSpeechRecognitionService,
+  SpeechRecognitionResponse,
+} from '@ngx-lcp/ngx-speech-recognition';
 
 @Component({
   selector: 'app-speech-recognition',
@@ -8,21 +11,17 @@ import { NgxSpeechRecognitionService } from '@ngx-lcp/ngx-speech-recognition';
 })
 export class SpeechRecognitionComponent {
   startedSpeechRecognition = false;
-  textSpeechRecognition = '';
+  speechRecognition: SpeechRecognitionResponse | null = null;
 
   constructor(private speechRecognitionService: NgxSpeechRecognitionService) {}
 
   start(): void {
     this.startedSpeechRecognition = true;
-    this.textSpeechRecognition = '';
-    this.speechRecognitionService.start(
-      (text: string) => {
-        this.textSpeechRecognition = text;
-      },
-      (error) => {
-        this.stop();
-        console.log(error);
-      }
+    this.speechRecognition = null;
+    this.speechRecognitionService.start().subscribe(
+      (speechRecognition: SpeechRecognitionResponse) =>
+        (this.speechRecognition = speechRecognition),
+      () => this.stop()
     );
   }
 

@@ -1,4 +1,20 @@
-<button type="button" class="btn btn-secondary" (click)="uploadFile()">Choose file</button>
+<div class="d-flex align-items-center justify-content-between">
+  <button type="button" class="btn btn-secondary" (click)="uploadFile()">Choose file</button>
+  <div class="d-flex">
+    <div>
+      <select [(ngModel)]="settings.accept">
+        <option value="">Extensão</option>
+        <option value=".png,.jpg,.gif">.png, .jpg, .gif</option>
+        <option value=".pdf,.doc,.docx">.pdf, .doc, .docx</option>
+        <option value=".mp3,.mp4,.avi">.mp3, .mp4, .avi</option>
+      </select>
+    </div>
+    <div class="ml-2">
+      <input type="checkbox" id="multiple" [(ngModel)]="settings.multiple" />
+      <label class="ml-1" for="multiple">Multiple</label>
+    </div>
+  </div>
+</div>
 
 <div class="mt-4">
   <table class="table" *ngIf="files.length">
