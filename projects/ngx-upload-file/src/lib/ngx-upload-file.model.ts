@@ -6,9 +6,12 @@ export interface UploadFile {
 }
 
 export interface UploadFileSettings {
-  acceptFileExtension?: string;
+  accept?: string;
+  multiple?: boolean;
   maxFileSize?: number;
   minFileSize?: number;
+  maxFileAmount?: number;
+  minFileAmount?: number;
 }
 
 export interface UploadFileError {

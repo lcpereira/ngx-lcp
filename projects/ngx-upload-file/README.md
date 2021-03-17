@@ -32,4 +32,4 @@ uploadFile(): void {
 
 # License
 
-[MIT](LICENSE)
+[MIT](/LICENSE)

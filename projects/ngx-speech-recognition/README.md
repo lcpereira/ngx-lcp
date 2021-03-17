@@ -13,17 +13,17 @@ npm i @ngx-lcp/speech-recognition
 
 # Usage
 ```typescript
-import { NgxSpeechRecognitionService } from '@ngx-lcp/ngx-speech-recognition';
+import { NgxSpeechRecognitionService, SpeechRecognitionResponse, SpeechRecognitionError } from '@ngx-lcp/ngx-speech-recognition';
 
 ...
 constructor(private speechRecognitionService: NgxSpeechRecognitionService) {}
 
 start(): void {
   this.speechRecognitionService.start(
-    (text: string) => {
-      console.log(text);
+    (speechRecognition: SpeechRecognitionResponse) => {
+      console.log(speechRecognition);
     },
-    (error) => {
+    (error: SpeechRecognitionError) => {
       console.error(error);
     }
   );
@@ -36,4 +36,4 @@ stop(): void {
 
 # License
 
-[MIT](LICENSE)
+[MIT](/LICENSE)

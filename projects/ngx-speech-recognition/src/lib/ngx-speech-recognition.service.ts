@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { NgxSpeechRecognition } from './ngx-speech-recognition.interface';
+import { Observable } from 'rxjs';
+import { SpeechRecognitionEnum } from './ngx-speech-recognition.enum';
+import { SpeechRecognitionResponse } from './ngx-speech-recognition.model';
 
 declare global {
   interface Window {
@@ -15,8 +18,7 @@ declare global {
   providedIn: 'root',
 })
 export class NgxSpeechRecognitionService {
-  private listening: ((speach: string) => void) | null = null;
-  private errorListening: ((erro: any) => void) | null = null;
+  private $speechRecognition = new EventEmitter<SpeechRecognitionResponse>();
   private speechRegocnize: SpeechRecognition | null = null;
 
   finalTranscript = '';
@@ -29,15 +31,16 @@ export class NgxSpeechRecognitionService {
     if (speechRecognition) {
       this.speechRegocnize = new speechRecognition();
     } else {
-      if (this.errorListening) {
-        this.errorListening('Speech recognition is not supported in your browser.');
-      }
+      this.onCantHeard(
+        'Speech recognition is not supported in your browser.',
+        SpeechRecognitionEnum.NOT_SUPPORTED
+      );
     }
 
     if (this.speechRegocnize) {
-      this.speechRegocnize.lang = 'pt-BR';
-      this.speechRegocnize.continuous = true;
-      this.speechRegocnize.interimResults = true;
+      this.speechRegocnize.lang = 'pt-BR'; // TODO: put dynamic
+      this.speechRegocnize.continuous = true; // TODO: put dynamic
+      this.speechRegocnize.interimResults = true; // TODO: put dynamic
       this.speechRegocnize.addEventListener('result', (event: SpeechRecognitionEvent) =>
         this.onSpeak(event)
       );
@@ -56,18 +59,20 @@ export class NgxSpeechRecognitionService {
     }
 
     try {
-      if (this.listening) {
-        this.listening(this.finalTranscript + interimTranscript);
-      }
+      this.$speechRecognition.emit({
+        interimTranscript,
+        finalTranscript: this.finalTranscript,
+      });
     } catch (e) {
       this.onCantHeard(e);
     }
   }
 
-  private onCantHeard(error: unknown): void {
-    if (this.errorListening) {
-      this.errorListening(error);
-    }
+  private onCantHeard(error: unknown, code?: SpeechRecognitionEnum): void {
+    this.$speechRecognition.error({
+      code: code || SpeechRecognitionEnum.UNKNOWN_ERROR,
+      text: error,
+    });
   }
 
   private getSpeechRecognition(): NgxSpeechRecognition {
@@ -78,18 +83,18 @@ export class NgxSpeechRecognitionService {
       window.oSpeechRecognition) as NgxSpeechRecognition;
   }
 
-  start(listening: (speach: string) => void, error?: (error: unknown) => void): void {
-    this.listening = listening;
+  start(): Observable<SpeechRecognitionResponse> {
+    this.finalTranscript = '';
 
-    if (error) {
-      this.errorListening = error;
-    }
+    setTimeout(() => {
+      this.configureSpeech();
 
-    this.configureSpeech();
+      if (this.speechRegocnize) {
+        this.speechRegocnize.start();
+      }
+    });
 
-    if (this.speechRegocnize) {
-      this.speechRegocnize.start();
-    }
+    return this.$speechRecognition;
   }
 
   stop(): void {

@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { EventTargetLike } from 'rxjs/internal/observable/fromEvent';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { UploadFileErrorEnum } from './ngx-upload-file.enum';
 import { UploadFileError, UploadFileSettings } from './ngx-upload-file.model';
 
@@ -13,14 +12,15 @@ interface HTMLInputEvent extends Event {
     <input
       #fileInput
       type="file"
-      [accept]="settings?.acceptFileExtension"
+      [accept]="settings?.accept"
+      [multiple]="settings?.multiple"
       (change)="onFileSelected($event)"
     />
   `,
 })
 export class NgxUploadFileComponent {
-  @Input() settings: UploadFileSettings | null = null;
-  @Output() fileSelected = new EventEmitter();
+  settings: UploadFileSettings | null = null;
+  fileSelected = new EventEmitter();
   @ViewChild('fileInput') fileInput: ElementRef | null = null;
 
   openFileSelect(): void {
@@ -53,6 +53,15 @@ export class NgxUploadFileComponent {
         fileError = {
           code: UploadFileErrorEnum.FILE_MAX_SIZE,
           message: `The file size is larger than ${this.settings.maxFileSize}`,
+        };
+
+        return false;
+      }
+
+      if (this.settings?.minFileSize && this.settings?.minFileSize > file.size) {
+        fileError = {
+          code: UploadFileErrorEnum.FILE_MIN_SIZE,
+          message: `The file size is less than ${this.settings.minFileSize}`,
         };
 
         return false;
