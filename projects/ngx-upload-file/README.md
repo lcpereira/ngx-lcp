@@ -1,7 +1,7 @@
 # @ngx-lcp/upload-file
 Simple service to upload file.
 
-[![Build Status](https://travis-ci.org/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.org/lcpereira/ngx-lcp)
+[![Build Status](https://travis-ci.com/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.com/lcpereira/ngx-lcp)
 
 # Security Notice
 This lib is still in development.
