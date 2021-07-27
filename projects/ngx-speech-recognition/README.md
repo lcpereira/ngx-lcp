@@ -1,7 +1,7 @@
 # @ngx-lcp/speech-recognition
 Simple service to listen to the person using the microphone.
 
-[![Build Status](https://travis-ci.org/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.org/lcpereira/ngx-lcp)
+[![Build Status](https://travis-ci.com/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.com/lcpereira/ngx-lcp)
 
 # Security Notice
 This lib is still in development.
