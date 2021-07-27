@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.org/lcpereira/ngx-lcp)
+[![Build Status](https://travis-ci.com/lcpereira/ngx-lcp.svg?branch=main)](https://travis-ci.com/lcpereira/ngx-lcp)
 <br>
 <br>
 
